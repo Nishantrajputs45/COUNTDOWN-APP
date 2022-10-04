@@ -20,7 +20,7 @@
   height: 80vh;
 }
 .heading {
-  font-size: 80px;
+  font-size: 90px;
   color: #b4161b;
 }
 .user-time {
@@ -78,7 +78,7 @@
 }
 .start {
   padding: 1rem 2rem;
-  font-size: 30px;
+  font-size: 25px;
   background-color: #e03b8b;
   border: none;
   color: #ffffff;

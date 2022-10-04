@@ -22,66 +22,68 @@ function countDownStart() {
   if (userSecond) {
     dataInMilliSecond = dataInMilliSecond + Number(userSecond.value) * 1000;
   }
-  setIntervalResult = setInterval(() => {
-    dataInMilliSecond = dataInMilliSecond - 100;
-    if (dataInMilliSecond === 0) {
-      clearInterval(setIntervalResult);
-    }
-    let day = "";
-    let hour = "";
-    let minute = "";
-    let second = "";
-    if (Math.floor(dataInMilliSecond / (24 * 60 * 60 * 1000)) < 10) {
-      day = "0" + day + Math.floor(dataInMilliSecond / (24 * 60 * 60 * 1000));
-    } else {
-      day = day + Math.floor(dataInMilliSecond / (24 * 60 * 60 * 1000));
-    }
-    if (
-      Math.floor(
-        (dataInMilliSecond % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
-      ) < 10
-    ) {
-      hour =
-        "0" +
-        hour +
+  if (dataInMilliSecond > 0) {
+    setIntervalResult = setInterval(() => {
+      dataInMilliSecond = dataInMilliSecond - 100;
+      if (dataInMilliSecond === 0) {
+        clearInterval(setIntervalResult);
+      }
+      let day = "";
+      let hour = "";
+      let minute = "";
+      let second = "";
+      if (Math.floor(dataInMilliSecond / (24 * 60 * 60 * 1000)) < 10) {
+        day = "0" + day + Math.floor(dataInMilliSecond / (24 * 60 * 60 * 1000));
+      } else {
+        day = day + Math.floor(dataInMilliSecond / (24 * 60 * 60 * 1000));
+      }
+      if (
         Math.floor(
           (dataInMilliSecond % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
-        );
-    } else {
-      hour =
+        ) < 10
+      ) {
+        hour =
+          "0" +
+          hour +
+          Math.floor(
+            (dataInMilliSecond % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
+          );
+      } else {
+        hour =
+          hour +
+          Math.floor(
+            (dataInMilliSecond % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
+          );
+      }
+      if (
+        minute +
+          Math.floor((dataInMilliSecond % (60 * 60 * 1000)) / (60 * 1000)) <
+        10
+      ) {
+        minute =
+          "0" +
+          minute +
+          Math.floor((dataInMilliSecond % (60 * 60 * 1000)) / (60 * 1000));
+      } else {
+        minute =
+          minute +
+          Math.floor((dataInMilliSecond % (60 * 60 * 1000)) / (60 * 1000));
+      }
+      if (second + Math.floor((dataInMilliSecond % (60 * 1000)) / 1000) < 10) {
+        second =
+          "0" + second + Math.floor((dataInMilliSecond % (60 * 1000)) / 1000);
+      } else {
+        second = second + Math.floor((dataInMilliSecond % (60 * 1000)) / 1000);
+      }
+      result.innerText =
+        "Day : " +
+        day +
+        " Hour : " +
         hour +
-        Math.floor(
-          (dataInMilliSecond % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
-        );
-    }
-    if (
-      minute +
-        Math.floor((dataInMilliSecond % (60 * 60 * 1000)) / (60 * 1000)) <
-      10
-    ) {
-      minute =
-        "0" +
+        " Minute : " +
         minute +
-        Math.floor((dataInMilliSecond % (60 * 60 * 1000)) / (60 * 1000));
-    } else {
-      minute =
-        minute +
-        Math.floor((dataInMilliSecond % (60 * 60 * 1000)) / (60 * 1000));
-    }
-    if (second + Math.floor((dataInMilliSecond % (60 * 1000)) / 1000) < 10) {
-      second =
-        "0" + second + Math.floor((dataInMilliSecond % (60 * 1000)) / 1000);
-    } else {
-      second = second + Math.floor((dataInMilliSecond % (60 * 1000)) / 1000);
-    }
-    result.innerText =
-      "Day : " +
-      day +
-      " Hour : " +
-      hour +
-      " Minute : " +
-      minute +
-      " Second : " +
-      second;
-  }, 100);
+        " Second : " +
+        second;
+    }, 100);
+  }
 }
